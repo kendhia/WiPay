@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_new_bill"
     android:layout_width="match_parent"
@@ -9,7 +9,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="kendhia.co.wi_pay.Fragments.NewBillFragment"
-    tools:showIn="@layout/activity_new_bill">
+    tools:showIn="@layout/activity_new_bill"
+    android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/test_qrcode_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="qlmksdfjqm"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/test_img_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
