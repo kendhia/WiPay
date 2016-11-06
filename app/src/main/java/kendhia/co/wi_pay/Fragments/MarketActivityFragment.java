@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.zip.Inflater;
 
+import kendhia.co.wi_pay.Beans.Bill;
 import kendhia.co.wi_pay.MarketActivity;
 import kendhia.co.wi_pay.R;
 
@@ -105,18 +106,25 @@ public class MarketActivityFragment extends Fragment {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             if (bills.get(position) != null) {
                 final String bill = bills.get(position);
-                BillViewHolder rootView = (BillViewHolder) holder;
+                final BillViewHolder rootView = (BillViewHolder) holder;
                 rootView.mBillInfo.setText(bill);
-                rootView.mCancelView.setOnClickListener(new View.OnClickListener() {
+                FirebaseDatabase.getInstance().getReference()
+                        .child("bills").child(billsKey.get(position)).addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onClick(View v) {
-                        FirebaseDatabase.getInstance().getReference().child("transitions").child(bill).removeValue();
-                        /*bills.remove(position);
-                        prices.remove(position);
-                        notifyItemRemoved(position);*/
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Bill bill1 = dataSnapshot.getValue(Bill.class);
+                        if (bill1.mPaid) {
+                            Picasso.with(getContext()).load(R.drawable.comment_check).into(rootView.mCancelView);
+                        } else {
+                            Picasso.with(getContext()).load(R.drawable.comment_processing_outline).into(rootView.mCancelView);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
-
 
                 rootView.mBillInfo.setOnClickListener(new View.OnClickListener() {
                     @Override

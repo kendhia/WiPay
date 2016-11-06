@@ -26,6 +26,7 @@
         android:padding="12dp"
         android:background="@color/colorPrimaryDark"
         android:elevation="8dp"
+        android:visibility="invisible"
         android:text="Submit"/>
 
 </LinearLayout>

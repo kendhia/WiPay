@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="5dp">
+    android:layout_marginBottom="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,13 +13,17 @@
             android:id="@+id/bill_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="5"/>
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
             android:id="@+id/bill_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/common_ic_googleplayservices"
+            android:background="@color/colorPrimary"
             android:layout_weight="1"/>
 
     </LinearLayout>

@@ -30,6 +30,8 @@ public class PayBillFragment extends Fragment {
 
     static ItemsList mItemsList;
     RecyclerView mRecyclerView;
+    static TextView mTotalTV;
+    static TextView mMarketTV;
     public PayBillFragment() {
     }
 
@@ -42,6 +44,9 @@ public class PayBillFragment extends Fragment {
         mItemsList = new ItemsList();
         mRecyclerView = (RecyclerView)mRootView.findViewById(R.id.items_list);
         mRecyclerView.setAdapter(mItemsList);
+
+        mTotalTV = (TextView)mRootView.findViewById(R.id.total_to_pay);
+        mMarketTV = (TextView)mRootView.findViewById(R.id.market_name);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -59,13 +64,15 @@ public class PayBillFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Bill bill = dataSnapshot.getValue(Bill.class);
-                if (bill != null || bill.mItems != null) {
+                if (bill != null && bill.mItems != null) {
                     ArrayList<String> names = bill.mItems;
                     for (int pos = 0; pos < names.size(); pos++) {
                         mItemsList.addItem(bill.mItems.get(pos), bill.mprices.get(pos));
                         mItemsList.notifyItemInserted(mItemsList.getItemCount()-1);
                         Log.e("ss", bill.mItems.get(pos));
                     }
+                    mMarketTV.setText(bill.mMarketId);
+                    mTotalTV.setText(bill.mTotal);
                 }
             }
 

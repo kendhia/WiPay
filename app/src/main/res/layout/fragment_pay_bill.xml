@@ -11,20 +11,40 @@
     tools:context="kendhia.co.wi_pay.Fragments.PayBillFragment"
     tools:showIn="@layout/activity_pay_bill"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/market_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:paddingBottom="20dp"
+        android:gravity="center"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Item Barcode"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price"/>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_height="wrap_content" />
 
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1">
+        android:layout_marginBottom="8dp">
         <EditText android:id="@+id/total_to_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

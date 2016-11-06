@@ -37,6 +37,7 @@ import me.ydcool.lib.qrmodule.encoding.QrGenerator;
 public class NewBill extends AppCompatActivity {
 
     ItemsList mAdapter;
+    AppCompatButton btn_submit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class NewBill extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        AppCompatButton btn_submit = (AppCompatButton)findViewById(R.id.btn_submit);
+        btn_submit = (AppCompatButton)findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +134,7 @@ public class NewBill extends AppCompatActivity {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             if (items.get(position) != null) {
+                btn_submit.setVisibility(View.VISIBLE);
                 final String item = items.get(position);
                 BillViewHolder rootView = (BillViewHolder) holder;
                 rootView.mBarcode.setText(item);

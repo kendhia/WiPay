@@ -27,4 +27,7 @@ public class MarketActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

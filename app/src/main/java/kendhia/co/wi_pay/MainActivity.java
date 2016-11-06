@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import at.markushi.ui.CircleButton;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppCompatButton btn_new_customer =(AppCompatButton) findViewById(R.id.brn_new_customer);
-        AppCompatButton btn_new_market = (AppCompatButton) findViewById(R.id.btn_new_market);
+        CircleButton btn_new_customer =(CircleButton) findViewById(R.id.brn_new_customer);
+        CircleButton btn_new_market = (CircleButton) findViewById(R.id.btn_new_market);
 
         btn_new_customer.setOnClickListener(new View.OnClickListener() {
             @Override
