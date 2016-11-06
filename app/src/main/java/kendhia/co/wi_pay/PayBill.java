@@ -23,14 +23,7 @@ public class PayBill extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = new Intent(this, QrScannerActivity.class);
@@ -41,10 +34,11 @@ public class PayBill extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == QrScannerActivity.QR_REQUEST_CODE) {
+            String key =data.getExtras().getString(QrScannerActivity.QR_RESULT_STR);
             Log.d(TAG, resultCode == RESULT_OK
-                    ? data.getExtras().getString(QrScannerActivity.QR_RESULT_STR)
+                    ? key
                     : "Scanned Nothing!");
-            PayBillFragment.bindData(getApplicationContext(), data.getExtras().getString(QrScannerActivity.QR_RESULT_STR));
+            PayBillFragment.bindData(getApplicationContext(), key);
         }
     }
 

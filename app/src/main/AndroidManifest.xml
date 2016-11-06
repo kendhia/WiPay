@@ -2,12 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kendhia.co.wi_pay">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -69,9 +68,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kendhia.co.wi_pay.CustomerActivity" />
         </activity>
-
-        <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity"/>
-
+        <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity" />
+        <activity
+            android:name=".BillHistory"
+            android:label="@string/title_activity_bill_history"
+            android:parentActivityName=".CustomerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kendhia.co.wi_pay.CustomerActivity" />
+        </activity>
     </application>
 
 </manifest>

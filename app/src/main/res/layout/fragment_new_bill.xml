@@ -12,20 +12,20 @@
     tools:showIn="@layout/activity_new_bill"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/test_qrcode_link"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bills_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="qlmksdfjqm"/>
-
-    <Button
-        android:id="@+id/test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:id="@+id/test_img_qrcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="8dp"
+        android:text="Submit"/>
 
 </LinearLayout>

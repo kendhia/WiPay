@@ -1,24 +1,40 @@
 package kendhia.co.wi_pay.Fragments;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.zip.Inflater;
 
+import kendhia.co.wi_pay.MarketActivity;
 import kendhia.co.wi_pay.R;
 
 /**
@@ -39,10 +55,14 @@ public class MarketActivityFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_market, container, false);
         mRecyclerView = (RecyclerView)mRootView.findViewById(R.id.transitions_list);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
         final BillList billList = new BillList();
+        mRecyclerView.setAdapter(billList);
+        mRecyclerView.setLayoutManager(layoutManager);
 
         FirebaseDatabase.getInstance().getReference()
-                .child("transitions").addValueEventListener(new ValueEventListener() {
+                .child("bills").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
@@ -73,6 +93,7 @@ public class MarketActivityFragment extends Fragment {
 
         public BillList() {
             bills = new ArrayList<>();
+            billsKey = new ArrayList<>();
         }
 
         @Override
@@ -90,9 +111,41 @@ public class MarketActivityFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         FirebaseDatabase.getInstance().getReference().child("transitions").child(bill).removeValue();
-                        bills.remove(position);
-                        billsKey.remove(position);
-                        notifyItemRemoved(position);
+                        /*bills.remove(position);
+                        prices.remove(position);
+                        notifyItemRemoved(position);*/
+                    }
+                });
+
+
+                rootView.mBillInfo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.bill_qer_code);
+                        ImageButton close = (ImageButton) dialog.findViewById(R.id.btnClose);
+                        final ImageView qr_code = (ImageView) dialog.findViewById(R.id.qr_code_img);
+                        StorageReference storageRef = FirebaseStorage.getInstance()
+                                .getReference().child("transitions").child(billsKey.get(position));
+
+                         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                             @Override
+                             public void onSuccess(Uri uri) {
+                                 Picasso.with(getContext()).load(uri).into(qr_code);
+                                 Log.e("sss", uri.toString());
+                             }
+                         });
+
+                         close.setOnClickListener(new View.OnClickListener() {
+                             @Override
+                             public void onClick(View v) {
+                                 dialog.dismiss();
+                             }
+                         });
+
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                        dialog.show();
                     }
                 });
 

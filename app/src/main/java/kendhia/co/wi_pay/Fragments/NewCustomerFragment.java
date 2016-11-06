@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import kendhia.co.wi_pay.CustomerActivity;
 import kendhia.co.wi_pay.R;
 import kendhia.co.wi_pay.Utils.Utils;
 
@@ -39,6 +40,9 @@ public class NewCustomerFragment extends Fragment {
                 String vt = mAccount.getText().toString();
                 Integer t = Integer.valueOf(vt);
                 Utils.saveNewCustomer(mName.getText().toString(), t);
+
+                Intent intent = new Intent(getContext(), CustomerActivity.class);
+                startActivity(intent);
 
             }
         });

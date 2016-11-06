@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,18 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/bill_info"
+            android:id="@+id/item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="5"/>
+            android:layout_weight="3"
+            tools:text="qsdfqsdfqsfd"/>
 
-        <ImageView
-            android:id="@+id/bill_cancel"
+        <TextView
+            android:id="@+id/item_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/common_ic_googleplayservices"
             android:layout_weight="1"/>
-
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

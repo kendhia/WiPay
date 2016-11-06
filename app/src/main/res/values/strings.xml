@@ -7,4 +7,5 @@
     <string name="title_activity_market">MarketActivity</string>
     <string name="title_activity_new_bill">NewBill</string>
     <string name="title_activity_pay_bill">PayBill</string>
+    <string name="title_activity_bill_history">BillHistory</string>
 </resources>

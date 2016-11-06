@@ -6,16 +6,20 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import kendhia.co.wi_pay.R;
@@ -36,11 +40,9 @@ public class NewBillFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_bill, container, false);
-        imageview = (ImageView)rootView.findViewById(R.id.test_img_qrcode);
-        Button button = (Button)rootView.findViewById(R.id.test_button);
-        text = (EditText)rootView.findViewById(R.id.test_qrcode_link);
 
-        button.setOnClickListener(new View.OnClickListener() {
+
+       /* button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -58,8 +60,9 @@ public class NewBillFragment extends Fragment {
                             .encode();
                     imageview.setImageBitmap(qrCode);
 
+                    String key = FirebaseDatabase.getInstance().getReference().child("bills").push().getKey();
                     Uri uri = Utils.getImageUri(getContext(), qrCode);
-                    Utils.saveNewTransition("sss", new HashMap<String, String>(), text.getText().toString(),
+                    Utils.saveNewTransition(key, new HashMap<String, String>(), text.getText().toString(),
                             "", uri);
 
                 } catch (WriterException e) {
@@ -67,7 +70,10 @@ public class NewBillFragment extends Fragment {
                 }
 
             }
-        });
+        });*/
         return rootView;
     }
+
+
+
 }

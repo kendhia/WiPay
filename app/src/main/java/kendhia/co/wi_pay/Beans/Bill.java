@@ -3,6 +3,7 @@ package kendhia.co.wi_pay.Beans;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,8 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Bill {
 
-    public HashMap<String, String> mItems;
+    public ArrayList<String> mItems;
+    public ArrayList<String> mprices;
     public String mMarketId;
     public String mCustomerId;
     public String mTotal;
@@ -23,9 +25,10 @@ public class Bill {
 
      }
 
-    public Bill(HashMap<String, String> items, String marketid, String total) {
+    public Bill(ArrayList<String> items, ArrayList<String> prices, String marketid, String total) {
         mMarketId = marketid;
         mItems = items;
+        mprices = prices;
         mTotal = total;
         mPaid = false;
     }
@@ -33,10 +36,12 @@ public class Bill {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("marketid", mMarketId);
-        result.put("customerid", mCustomerId);
-        result.put("total", mTotal);
-        result.put("paid", mPaid);
+        result.put("mMarketId", mMarketId);
+        result.put("mCustomerId", mCustomerId);
+        result.put("mTotal", mTotal);
+        result.put("mPaid", mPaid);
+        result.put("mItems", mItems);
+        result.put("mprices", mprices);
         return result;
     }
 }

@@ -35,12 +35,12 @@ public class Utils {
         mDatabaseReference.child("markets").child(name).setValue(market);
     }
 
-    public static void saveNewTransition(String key, HashMap<String, String> items, String market, String total, Uri qrCode) {
+ /*   public static void saveNewTransition(String key, HashMap<String, String> items, String market, String total, Uri qrCode) {
         Bill bill = new Bill(items, market, total);
         mDatabaseReference.child("transitions").child(key).setValue(bill);
         mStorageReference.child("transitions").child(key).putFile(qrCode);
     }
-
+*/
     public static Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
